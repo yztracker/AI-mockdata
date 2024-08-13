@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
-import { dataStore } from "../generate/route";
+import { getData, deleteExpiredData } from "@/lib/db";
 
 export async function GET(request, { params }) {
   const { dataHash } = params;
 
   console.log(`Received GET request for dataHash: ${dataHash}`);
-  console.log(`Current dataStore keys: ${Array.from(dataStore.keys())}`);
 
   try {
-    if (dataStore.has(dataHash)) {
-      const { data, expirationTime } = dataStore.get(dataHash);
+    await deleteExpiredData(); // Delete expired data
+
+    const result = await getData(dataHash);
+    if (result) {
+      const { data, expirationTime } = result;
       if (Date.now() > expirationTime) {
-        dataStore.delete(dataHash);
         console.log(`Data expired for hash: ${dataHash}`);
         return NextResponse.json({ error: "Data expired" }, { status: 404 });
       }

@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import crypto from "crypto";
+import { saveData, initDb } from "@/lib/db";
 
 const API_KEY = "AIzaSyCV3UiYT8fSxHvRVUsAvFtd8NOjq8VaBho";
 console.log("Using API Key:", API_KEY);
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
-let dataStore = new Map();
-
 export async function POST(request) {
   try {
     console.log("Received POST request to /api/generate");
+
+    await initDb(); // Ensure database table is created
 
     const { userInput } = await request.json();
 
@@ -38,8 +39,9 @@ export async function POST(request) {
     const generatedData = JSON.parse(result.response.text());
 
     const dataHash = crypto.randomBytes(4).toString("hex");
-    const expirationTime = Date.now() + 3600000; // 1小時後過期
-    dataStore.set(dataHash, { data: generatedData, expirationTime });
+    const expirationTime = Date.now() + 3600000; // 1 hour later
+
+    await saveData(dataHash, generatedData, expirationTime);
 
     console.log(`Data generated and stored with hash: ${dataHash}`);
 
@@ -56,5 +58,3 @@ export async function POST(request) {
     );
   }
 }
-
-export { dataStore };
