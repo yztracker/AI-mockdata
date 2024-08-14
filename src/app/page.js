@@ -58,7 +58,7 @@ export default function Home() {
         console.error("Error generating data:", error);
         retries--;
         if (retries === 0) {
-          alert("無法生成數據，請稍後再試。");
+          alert("無法生成資料，請稍後再試。");
         }
       }
     }
@@ -99,7 +99,7 @@ export default function Home() {
             htmlFor="userInput"
             className="block text-sm font-medium text-gray-300 mb-2"
           >
-            描述您需要的數據結構：
+            描述您需要的資料結構：
           </label>
           <textarea
             id="userInput"
@@ -107,7 +107,7 @@ export default function Home() {
             onChange={(e) => setUserInput(e.target.value)}
             className="w-full p-2 border rounded bg-gray-800 text-gray-100 border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
             rows="4"
-            placeholder="例如：我需要一個包含公司名稱、成立時間和產品列表的數據結構"
+            placeholder="例如：我需要一個包含公司名稱、成立時間和產品列表的資料結構"
           />
         </div>
         <div className="mb-4">
@@ -199,17 +199,42 @@ export default function Home() {
         </div>
       )}
 
-      <footer className="mt-8 text-center text-sm text-gray-400">
-        <p>一個熱愛開發的獨立開發者，如果有更多AI應用需求歡迎聯繫我</p>
-        <p>
-          Email:{" "}
-          <a
-            href="mailto:handless.ai@gmail.com"
-            className="text-blue-400 hover:text-blue-300"
-          >
-            handless.ai@gmail.com
-          </a>
-        </p>
+      <footer className="mt-12 text-center text-gray-300 bg-gray-800 rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
+        <h2 className="text-2xl font-bold text-blue-300 mb-4">
+          快速生成模擬資料 API
+        </h2>
+        <ol className="text-left space-y-3">
+          <li className="flex items-start">
+            <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
+              1
+            </span>
+            <span>描述您需要的資料結構</span>
+          </li>
+          <li className="flex items-start">
+            <span>例如電商產品、價格、產品描述、評論</span>
+          </li>
+          <li className="flex items-start">
+            <span>電腦零件、價格、簡介等等</span>
+          </li>
+          <li className="flex items-start">
+            <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
+              2
+            </span>
+            <span>選擇生成的資料筆數和語言</span>
+          </li>
+          <li className="flex items-start">
+            <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
+              3
+            </span>
+            <span>點擊「生成資料」按鈕</span>
+          </li>
+          <li className="flex items-start">
+            <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">
+              4
+            </span>
+            <span>點擊生成的 API URL 使用</span>
+          </li>
+        </ol>
       </footer>
     </div>
   );
