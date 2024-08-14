@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mock API Generator
 
-## Getting Started
+This project is a dynamic mock data API generator that uses Next.js and Google's Gemini AI model to create custom mock data APIs.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Dynamically generate mock data based on user input.
+- Supports multiple languages (Traditional Chinese, English, Japanese).
+- Customizable data entry count (1-50 entries).
+- Generate temporary API endpoints to access mock data.
+- Data automatically expires after 1 hour.
+- Uses Vercel Postgres for data storage.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Frontend: Next.js, React
+- Backend: Next.js API Routes
+- Database: Vercel Postgres
+- AI Model: Google Gemini AI
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Quick Start
 
-## Learn More
+1. Clone this repository
+   ```
+   git clone https://github.com/your-username/mock-api-generator.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Install dependencies
+   ```
+   cd mock-api-generator
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up environment variables
+   Create a `.env.local` file and add the following:
+   ```
+   POSTGRES_URL=your_postgres_connection_string
+   GOOGLE_API_KEY=your_google_api_key
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. Run the development server
+   ```
+   npm run dev
+   ```
 
-## Deploy on Vercel
+5. Open `http://localhost:3000` in your browser
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Describe the data structure you need in the text area.
+2. Choose the number of data entries required.
+3. Select the data language (Traditional Chinese, English, or Japanese).
+4. Click the "Generate Data" button.
+5. View the generated data and temporary API URL.
+
+## Deployment
+
+This project can be easily deployed to Vercel. Simply connect the repository to your Vercel account and ensure the correct environment variables are set.
+
+## Contributing
+
+Pull Requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
