@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
+import { SiThreads } from "react-icons/si";
 
 export default function Home() {
   const [userInput, setUserInput] = useState("");
@@ -64,9 +66,32 @@ export default function Home() {
   };
   return (
     <div className="w-full px-8 py-4 bg-gray-900 text-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-blue-300">
-        Mock Data Generator
-      </h1>
+      <header className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-blue-300">
+          Mock Data Generator
+        </h1>
+        <nav className="flex items-center space-x-4">
+          <a
+            href="https://github.com/yztracker/mockapi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-blue-300"
+          >
+            <FaGithub size={24} />
+          </a>
+          <a
+            href="https://www.threads.net/@jimmy.ai.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-blue-300"
+          >
+            <SiThreads size={24} />
+          </a>
+          <Link href="/about" className="text-gray-300 hover:text-blue-300">
+            關於我
+          </Link>
+        </nav>
+      </header>
 
       <form onSubmit={handleSubmit} className="mb-8">
         <div className="mb-4">
@@ -173,6 +198,19 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      <footer className="mt-8 text-center text-sm text-gray-400">
+        <p>一個熱愛開發的獨立開發者，如果有更多AI應用需求歡迎聯繫我</p>
+        <p>
+          Email:{" "}
+          <a
+            href="mailto:handless.ai@gmail.com"
+            className="text-blue-400 hover:text-blue-300"
+          >
+            handless.ai@gmail.com
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
