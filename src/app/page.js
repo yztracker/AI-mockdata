@@ -63,7 +63,7 @@ export default function Home() {
     setIsLoading(false);
   };
   return (
-    <div className="container mx-auto p-4 bg-gray-900 text-gray-100 min-h-screen">
+    <div className="w-full px-8 py-4 bg-gray-900 text-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-blue-300">
         Mock Data Generator
       </h1>
