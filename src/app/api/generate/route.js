@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import crypto from "crypto";
 import { saveData, initDb } from "@/lib/db";
 
-const API_KEY = "AIzaSyCV3UiYT8fSxHvRVUsAvFtd8NOjq8VaBho";
+const API_KEY = process.env.GOOGLE_API_KEY;
 console.log("Using API Key:", API_KEY);
 
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -14,7 +14,7 @@ export async function POST(request) {
 
     await initDb(); // Ensure database table is created
 
-    const { userInput } = await request.json();
+    const { userInput, dataCount, language } = await request.json();
 
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-flash",
@@ -29,7 +29,14 @@ export async function POST(request) {
       
       ${userInput}
       
-      The data should be realistic and consistent. Provide the output as a valid JSON object.
+      Please generate ${dataCount} entries of this data structure.
+      Each entry should be unique and realistic.
+      The data should be consistent across all entries.
+      Use ${language} for all text values, with the following specifications:
+      - If the language is set to "中文", use Traditional Chinese (繁體中文) instead of Simplified Chinese.
+      - Brand names or proper nouns should remain in their original form (e.g., "Apple" should not be translated).
+      Our data properties or keys should be in English.
+      Provide the output as a valid JSON array of objects.
     `;
 
     console.log("Sending request to Gemini API");
